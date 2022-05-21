@@ -56,7 +56,6 @@ What is the main advantage of automating configuration with Ansible?
 If you have thousands of VM's on a single network, it is very advantageous to use ansible as it will automate updating all machines at the same time. If this was done by hand, it would take ages to update a thousand VM's with one person working on it.
 
 The playbook implements the following tasks:
-- _TODO: In 3-5 bullets, explain the steps of the ELK installation play. E.g., install Docker; download image; etc._
 - ...SSH into your jumpbox, install docker using the appropriate commands
 - ...Download a container image, run the container to create the container and then start and attach to the container.
 - ...from the container, you can create a custom ansible playbook in the /etc/ansible path and configure it to your needs using YAML language(.yml)
@@ -84,16 +83,12 @@ In order to use the playbook, you will need to have an Ansible control node alre
 - Update the config.yml file to include "Host" Ip Addresses and have correct Username/Password information.
 - Run the playbook, and navigate to /etc/ansible on your machines that your playbook ran on to install services, check that the installation worked as expected.
 
-Answer the following questions to fill in the blanks:_
 Which file is the playbook?
 Where do you copy it?
   The file that is named *-Playbook.yml is the playbook, you copy it to the /etc/ansible directory.
-Which file do you update to make Ansible run the playbook on a specific machine? How do I specify which machine to install the ELK server on versus which to install Filebeat on?
   The "hosts" in the *-config.yml file needs to be updated to the correct IP Addresses of your specific machine. Each *-playbook.yml file can be edited to specify what the playbook does. Meaning that you may create a seperate Filebeat/Metricbeat playbook that only runs on a specified IP Address(In this case the ELK-Server)
-Which URL do you navigate to in order to check that the ELK server is running?
 [your public ip address of the ELK server:5601(Because that is the port we specified for it to be open on in our azure security group rules)/app/kibana
 
-_As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc._
 cd /etc/ansible
 ~/etc/ansible ansible-playbook my-playbook.yml( This will run the playbook and intialize the tasks within the playbook, based on the "host" IP addresses that are listed in the "Hosts" file in ~/etc/ansible.
 
